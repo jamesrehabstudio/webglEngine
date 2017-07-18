@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="js/game.js"></script>
+	<script src="js/material.js"></script>
+	
+	<style>
+		* {margin:0; padding:0;}
+		body {overflow:hidden;}
+		canvas{background:black;}
+	</style>
+	<script>
+		window.addEventListener("load", function(){
+			window.game = new Game();
+			loop();
+		});
+		
+	</script>
+	
+	<script type="vertext_shader" id="vs_01">
+		attribute vec2 a_position;
+		attribute vec2 a_texCoord;
+		
+		varying vec2 v_texCoord;
+		void main(){
+			gl_Position = vec4(a_position, 1, 1);
+			v_texCoord = a_texCoord;
+		}
+	</script>
+	
+	<script type="fragment_shader" id="fs_01">
+		precision mediump float;
+		uniform sampler2D u_image;
+		varying vec2 v_texCoord;
+		
+		void main(){
+			gl_FragColor = texture2D(u_image, v_texCoord);
+		}
+	</script>
+</head>
+
+<body>
+</body>
+</html>
